@@ -69,11 +69,12 @@ public class Result {
         sb.append("\nVertices:\n");
         for (Vertex v : graph){
             sb.append(v.id);
-            sb.append("\t");
-            sb.append(v.x);
-            sb.append("\t");
-            sb.append(v.y);
-            sb.append("\n");
+            sb.append("->");
+//            sb.append("\t");
+//            sb.append(v.x);
+//            sb.append("\t");
+//            sb.append(v.y);
+//            sb.append("\n");
         }
 
         return sb.toString();
