@@ -62,10 +62,10 @@ public class Result {
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-
-        sb.append("\nmin edge: " + min);
-        sb.append("\nmax edge: " + max);
-        sb.append("\naverage edge: "+ avg);
+//        sb.append("\nmin edge: " + min);
+//        sb.append("\nmax edge: " + max);
+//
+//        sb.append("\naverage edge: "+ avg);
         sb.append("\nVertices:\n");
         for (Vertex v : graph){
             sb.append(v.id);

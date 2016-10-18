@@ -26,7 +26,7 @@ public class NearestNeighbour implements Algorithm {
             Map<Vertex, Integer> distances = new HashMap<>();
             for (Vertex v : verticesLeft) {
                 if (!v.visited)
-                    distances.put(v, computeDistance(current, v));
+                    distances.put(v, Distance.compute(current, v));
             }
             int minDist = distances.values().stream()
                     .mapToInt(i -> i)
@@ -43,16 +43,13 @@ public class NearestNeighbour implements Algorithm {
             graph.add(current);
             edges.add(closest.getValue());
         }
-        edges.add(computeDistance(start,graph.get(graph.size()-1)));
-
+        edges.add(Distance.compute(start, graph.get(graph.size() - 1)));
 
         return new Result(graph,edges);
-
     }
 
-    private int computeDistance(Vertex v1, Vertex v2){
-        int dx = v1.x-v2.x;
-        int dy = v1.y-v2.y;
-        return new Double((Math.sqrt(dx*dx+dy*dy))+0.5).intValue();
+    @Override
+    public String toString() {
+        return "Nearest Neighbour";
     }
 }
