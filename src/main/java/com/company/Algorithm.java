@@ -8,4 +8,6 @@ import java.util.List;
 public interface Algorithm {
 
     Result execute(List<Vertex> vertices, Vertex start);
+
+    String toString();
 }

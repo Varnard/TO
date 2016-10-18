@@ -24,8 +24,8 @@ public class GreedyCycle implements Algorithm {
             for (Vertex v : verticesLeft) {
                 Integer[] candidate = new Integer[3];
                 candidate[0]=v.id;
-                candidate[1]=computeDistance(current,v);
-                candidate[2]=computeDistance(start,v);
+                candidate[1] = Distance.compute(current, v);
+                candidate[2] = Distance.compute(start, v);
                 distances.add(candidate);
             }
 
@@ -50,15 +50,14 @@ public class GreedyCycle implements Algorithm {
             graph.add(current);
             edges.add(bestDistances[1]);
         }
-        edges.add(computeDistance(start,graph.get(graph.size()-1)));
+        edges.add(Distance.compute(start, graph.get(graph.size() - 1)));
 
         return new Result(graph,edges);
 
     }
 
-    private int computeDistance(Vertex v1, Vertex v2){
-        int dx = v1.x-v2.x;
-        int dy = v1.y-v2.y;
-        return new Double((Math.sqrt(dx*dx+dy*dy))+0.5).intValue();
+    @Override
+    public String toString() {
+        return "Greedy Cycle";
     }
 }
