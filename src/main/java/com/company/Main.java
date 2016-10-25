@@ -26,6 +26,7 @@ public class Main {
         Long bestTime = null;
         long avgTime = 0;
         long time = 0;
+
         for (int i = 0; i < 100; i++) {
             Result r = algorithm.execute(vertices, vertices.get(i));
             Instant before = Instant.now();
@@ -48,6 +49,7 @@ public class Main {
             avg += path;
             avgTime += time;
         }
+
 //        Vertex[] asdf=best.getGraph().toArray(new Vertex[50]);
 //        int check=0;
 //        for (int i = 0; i < 49; i++) {
