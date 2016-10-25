@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Asdfer on 11.10.2016.
@@ -134,6 +135,48 @@ public class LocalSearch {
 
         return new Result(finalGraph, finalEdges);
     }
+
+    public static Result perturbate(Result original, List<Vertex> vertices) {
+        Vertex[] graph = original.getGraph().toArray(new Vertex[50]);
+        Integer[] edges = original.getDistance().toArray(new Integer[50]);
+
+        Random rand = new Random();
+        List<Vertex> unusedVertices = new ArrayList<>(vertices);
+
+        for (int i = 0; i < 50; i++) {
+            unusedVertices.remove(graph[i]);
+        }
+
+        for (int j = 0; j < 2; j++) {
+            Vertex v = unusedVertices.get(rand.nextInt(50));
+            int i = rand.nextInt(50);
+            int nd1;
+            int nd2;
+            if (i == 0) {
+                nd1 = Distance.compute(v, graph[49]);
+                nd2 = Distance.compute(v, graph[1]);
+            } else if (i == 49) {
+                nd1 = Distance.compute(v, graph[48]);
+                nd2 = Distance.compute(v, graph[0]);
+            } else {
+                nd1 = Distance.compute(v, graph[i - 1]);
+                nd2 = Distance.compute(v, graph[i + 1]);
+
+                unusedVertices.add(graph[i]);
+                unusedVertices.remove(v);
+                graph[i] = v;
+                if (i == 0) edges[49] = nd1;
+                else edges[i - 1] = nd1;
+                edges[i] = nd2;
+            }
+        }
+
+        List<Vertex> finalGraph = Arrays.asList(graph);
+        List<Integer> finalEdges = Arrays.asList(edges);
+
+        return new Result(finalGraph, finalEdges);
+    }
+
 
     private static Vertex[] reverseGraph(Vertex[] graph, int from, int to) {
         Vertex[] newGraph = new Vertex[50];
