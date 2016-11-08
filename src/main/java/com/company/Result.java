@@ -18,21 +18,21 @@ public class Result {
     public Result(List<Vertex> graph, List<Integer> distance) {
         this.graph = new ArrayList<>(graph);
         this.distance = new ArrayList<>(distance);
-        min=distance.stream()
-                .mapToInt(i->i)
+        min = distance.stream()
+                .mapToInt(i -> i)
                 .min()
                 .getAsInt();
-        max=distance.stream()
-                .mapToInt(i->i)
+        max = distance.stream()
+                .mapToInt(i -> i)
                 .max()
                 .getAsInt();
-        avg=new Double(distance.stream()
-                .mapToInt(i->i)
+        avg = new Double(distance.stream()
+                .mapToInt(i -> i)
                 .average()
                 .getAsDouble())
                 .intValue();
-        total=distance.stream()
-                .mapToInt(i->i)
+        total = distance.stream()
+                .mapToInt(i -> i)
                 .sum();
     }
 
@@ -56,25 +56,29 @@ public class Result {
         return avg;
     }
 
-    public int getTotal(){
+    public int getTotal() {
         return total;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 //        sb.append("\nmin edge: " + min);
 //        sb.append("\nmax edge: " + max);
 //
 //        sb.append("\naverage edge: "+ avg);
         sb.append("\nVertices:\n");
-        for (Vertex v : graph){
+        for (Vertex v : graph) {
             sb.append(v.id);
             sb.append("->");
-//            sb.append("\t");
-//            sb.append(v.x);
-//            sb.append("\t");
-//            sb.append(v.y);
-//            sb.append("\n");
+        }
+        sb.append("\n\n");
+        for (Vertex v : graph) {
+            sb.append(v.id);
+            sb.append("\t");
+            sb.append(v.x);
+            sb.append("\t");
+            sb.append(v.y);
+            sb.append("\n");
         }
 
         return sb.toString();
